@@ -8,7 +8,7 @@ rm -rf prebuilts/clang/host/linux-x86
 repo init -u https://github.com/ProjectMatrixx/android.git -b 15.0 --git-lfs
 
 # Sync the repositories
-/opt/crave/resync.sh
+[ -f /usr/bin/resync ] && /usr/bin/resync || /opt/crave/resync.sh
 
 # Clone device tree repository
 git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
