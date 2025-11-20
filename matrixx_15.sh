@@ -2,10 +2,6 @@
 
 rm -rf .repo/local_manifests/
 
-# Local TimeZone
-sudo rm -rf /etc/localtime
-sudo ln -s /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-
 # Rom source repo
 repo init -u https://github.com/ProjectMatrixx/android.git -b 15.0 --git-lfs
 echo "=================="
