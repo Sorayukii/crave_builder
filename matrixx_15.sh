@@ -8,6 +8,14 @@ echo "=================="
 echo "Repo init success"
 echo "=================="
 
+# Sync the repositories
+if [ -f /opt/crave/resync.sh ]; then
+  /opt/crave/resync.sh
+else
+  repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
+fi
+echo "============================"
+
 # Clone device tree repository
 git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
 git clone https://github.com/Sorayukii/android_device_sony_tama-common -b matrixx-15 device/sony/tama-common
@@ -18,14 +26,6 @@ git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 15 hardware/sony/SonyOpenTelephony
 echo "============================"
 echo "Clone device tree success"
-echo "============================"
-
-# Sync the repositories
-if [ -f /opt/crave/resync.sh ]; then
-  /opt/crave/resync.sh
-else
-  repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
-fi
 echo "============================"
 
 # Export
