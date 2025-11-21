@@ -7,7 +7,10 @@ rm -rf prebuilts/clang/host/linux-x86
 # Initialize repo
 repo init -u https://github.com/ProjectMatrixx/android.git -b 15.0 --git-lfs
 
-# Sync the repositories
+# First sync the repositories
+[ -f /usr/bin/resync ] && /usr/bin/resync || /opt/crave/resync.sh
+
+# Second sync the repositories
 [ -f /usr/bin/resync ] && /usr/bin/resync || /opt/crave/resync.sh
 
 # Clone device tree repository
