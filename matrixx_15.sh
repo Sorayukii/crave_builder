@@ -9,7 +9,7 @@ repo init -u https://github.com/ProjectMatrixx/android.git -b 15.0 --git-lfs
 
 # Sync the repositories
 /opt/crave/resync.sh
-/opt/crave/resync.sh
+repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
 
 # Clone device tree repository
 git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
