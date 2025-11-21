@@ -7,18 +7,13 @@ rm -rf prebuilts/clang/host/linux-x86
 # Initialize repo
 repo init -u https://github.com/ProjectMatrixx/android.git -b 15.0 --git-lfs
 
+# Clone device tree manifest
+git clone https://github.com/Sorayukii/local_manifests -b matrixx-15 .repo/local_manifests
+
 # Sync the repositories
 /opt/crave/resync.sh
+/opt/crave/resync.sh
 repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
-
-# Clone device tree repository
-git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
-git clone https://github.com/Sorayukii/android_device_sony_tama-common -b matrixx-15 device/sony/tama-common
-git clone https://github.com/Sorayukii/android_device_sony_aurora -b 15 device/sony/aurora
-git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15 vendor/sony/tama-common
-git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 15 vendor/sony/aurora
-git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
-git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 15 hardware/sony/SonyOpenTelephony
 
 # Export
 export BUILD_USERNAME=ivy
