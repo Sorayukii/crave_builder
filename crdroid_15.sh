@@ -20,7 +20,7 @@ export BUILD_USERNAME=ivy
 export BUILD_HOSTNAME=crave
 
 # Set up build environment
-. build/envsetup.sh
+source build/envsetup.sh
 
 # Build rom
 brunch aurora
