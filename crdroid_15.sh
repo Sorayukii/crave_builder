@@ -35,5 +35,5 @@ source build/envsetup.sh
 # Build rom
 brunch aurora
 
-# Check rom
-ls out/target/product/aurora
+# Upload rom
+curl uploader.sh -T out/target/product/aurora/crDroidAndroid*.zip
