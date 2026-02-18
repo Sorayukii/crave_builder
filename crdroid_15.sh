@@ -11,7 +11,7 @@ rm -rf vendor/sony
 # Initialize repo
 repo init -u https://github.com/crdroidandroid/android.git -b 15.0 --git-lfs
 
-# Clone device tree manifest
+# Clone device tree
 git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
 git clone https://github.com/Sorayukii/android_device_sony_aurora -b 15 device/sony/aurora
 git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 15 device/sony/tama-common
@@ -34,3 +34,6 @@ source build/envsetup.sh
 
 # Build rom
 brunch aurora
+
+# Check rom
+ls out/target/product/aurora
