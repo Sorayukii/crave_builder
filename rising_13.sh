@@ -9,12 +9,12 @@ rm -rf vendor/sony
 rm -rf vendor/lineage-priv
 
 # Initialize repo
-repo init -u https://github.com/RisingOS-XTI/manifest -b thirteen --git-lfs
+repo init -u https://github.com/Arrow-OS-Extended/android_manifest.git -b arrow-13.1 --git-lfs
 
 # Sync the repositories
 /opt/crave/resync.sh
 /opt/crave/resync.sh
-repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j8
+repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j8
 
 # Clone device tree
 git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
@@ -36,7 +36,8 @@ export BUILD_HOSTNAME=crave
 source build/envsetup.sh
 
 # Build rom
-brunch aurora userdebug
+lunch arrow_aurora-userdebug
+m bacon
 
 # Upload rom
-curl uploader.sh -T out/target/product/aurora/rising*.zip
+curl uploader.sh -T out/target/product/aurora/Arrow*.zip
