@@ -7,6 +7,11 @@ rm -rf device/sony
 rm -rf hardware/sony
 rm -rf vendor/sony
 rm -rf vendor/lineage-priv
+rm -rf packages/apps/Etar
+rm -rf packages/apps/Eleven
+rm -rf packages/apps/Gallery2
+rm -rf packages/apps/Glimpse
+rm -rf packages/apps/Jelly
 
 # Initialize repo
 repo init -u https://github.com/RisingOS-XTI/manifest -b thirteen --git-lfs
@@ -26,8 +31,12 @@ git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 13
 git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
 # Clone Extra Apps
+git clone https://github.com/LineageOS/android_packages_apps_Etar -b lineage-20.0 packages/apps/Etar
 git clone https://github.com/LineageOS/android_packages_apps_Eleven -b lineage-20.0 packages/apps/Eleven
 git clone https://github.com/LineageOS/android_packages_apps_Recorder -b lineage-20.0 packages/apps/Recorder
+git clone https://github.com/LineageOS/android_packages_apps_Gallery2 -b lineage-20.0 packages/apps/Gallery2
+git clone https://github.com/LineageOS/android_packages_apps_Glimpse -b lineage-20.0 packages/apps/Glimpse
+git clone https://github.com/LineageOS/android_packages_apps_Jelly -b lineage-20.0 packages/apps/Jelly
 
 # Export
 export BUILD_USERNAME=ivy
