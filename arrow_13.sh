@@ -27,6 +27,8 @@ git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
 # Clone Extra Apps
 git clone https://github.com/LineageOS/android_packages_apps_Recorder -b lineage-20.0 packages/apps/Recorder
+git clone https://github.com/LineageOS/android_external_libncurses -b lineage-20.0 external/libncurses
+
 
 # Export
 export BUILD_USERNAME=ivy
