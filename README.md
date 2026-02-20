@@ -14,3 +14,8 @@ crave run --no-patch -- "curl -LSs https://raw.githubusercontent.com/Sorayukii/c
 ```
 crave run --no-patch -- "curl -LSs https://raw.githubusercontent.com/Sorayukii/crave_builder/refs/heads/master/arrow_13.sh | bash"
 ```
+
+<b> - RisingOS_A13 </b>
+```
+crave run --no-patch -- "curl -LSs https://raw.githubusercontent.com/Sorayukii/crave_builder/refs/heads/master/rising_13.sh | bash"
+```
