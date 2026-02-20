@@ -31,13 +31,13 @@ git clone https://github.com/LineageOS/android_packages_apps_Recorder -b lineage
 # Export
 export BUILD_USERNAME=ivy
 export BUILD_HOSTNAME=crave
-export ALLOW_MISSING_DEPENDENCIES=true
 
 # Set up build environment
 source build/envsetup.sh
 
 # Build rom
 lunch arrow_aurora-userdebug
+export ALLOW_MISSING_DEPENDENCIES=true
 m bacon
 
 # Upload rom
