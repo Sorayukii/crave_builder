@@ -50,6 +50,7 @@ export BUILD_HOSTNAME=crave
 
 # Set up build environment
 source build/envsetup.sh
+. build/envsetup.sh
 
 # Build rom
 lunch lineage_aurora-userdebug
