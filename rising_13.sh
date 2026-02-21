@@ -2,6 +2,16 @@
 
 # WARNING: This will remove all local changes!
 rm -rf .repo/local_manifests
+
+# Initialize repo
+repo init -u https://github.com/RisingOS-LTS/manifest -b thirteen --git-lfs
+
+# Sync the repositories
+/opt/crave/resync.sh
+/opt/crave/resync.sh
+repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j8
+
+# Remove additional
 rm -rf kernel/sony
 rm -rf device/sony
 rm -rf hardware/sony
@@ -13,14 +23,7 @@ rm -rf packages/apps/Eleven
 rm -rf packages/apps/Gallery2
 rm -rf packages/apps/Glimpse
 rm -rf packages/apps/Jelly
-
-# Initialize repo
-repo init -u https://github.com/RisingOS-LTS/manifest -b thirteen --git-lfs
-
-# Sync the repositories
-/opt/crave/resync.sh
-/opt/crave/resync.sh
-repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j8
+rm -rf vendor/rising
 
 # Clone device tree
 git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
@@ -39,6 +42,7 @@ git clone https://github.com/LineageOS/android_packages_apps_Recorder -b lineage
 git clone https://github.com/LineageOS/android_packages_apps_Gallery2 -b lineage-20.0 packages/apps/Gallery2
 git clone https://github.com/LineageOS/android_packages_apps_Glimpse -b lineage-20.0 packages/apps/Glimpse
 git clone https://github.com/LineageOS/android_packages_apps_Jelly -b lineage-20.0 packages/apps/Jelly
+git clone https://github.com/KanonifyX/android_vendor_rising -b LTS vendor/rising
 
 # Export
 export BUILD_USERNAME=ivy
