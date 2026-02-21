@@ -22,7 +22,7 @@ rm -rf packages/apps/Settings
 rm -rf frameworks/base
 
 # Clone device tree
-git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock-upstream kernel/sony/sdm845
+git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
 git clone https://github.com/Sorayukii/android_device_sony_aurora -b supri-13 device/sony/aurora
 git clone https://github.com/Sorayukii/android_device_sony_tama-common -b aosp-13 device/sony/tama-common
 git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 13 hardware/sony/SonyOpenTelephony
