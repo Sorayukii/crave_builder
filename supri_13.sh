@@ -9,7 +9,7 @@ rm -rf vendor/sony
 rm -rf vendor/lineage-priv
 
 # Initialize repo
-repo init -u https://github.com/Superior13-NEXT/manifest.git -b QPR3
+repo init -u https://github.com/k4ngcaribug/manifest.git -b QPR3
 
 # Sync the repositories
 /opt/crave/resync.sh
@@ -38,7 +38,7 @@ git clone https://github.com/KanonifyX/android_frameworks_base --depth=1 -b QPR3
 
 # Export
 export BUILD_USERNAME=ivy
-export BUILD_HOSTNAME=crave
+export BUILD_HOSTNAME=android-build
 
 # Set up build environment
 source build/envsetup.sh
