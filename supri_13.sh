@@ -14,7 +14,7 @@ repo init -u https://github.com/k4ngcaribug/manifest.git -b QPR3
 # Sync the repositories
 /opt/crave/resync.sh
 /opt/crave/resync.sh
-repo sync -c --force-sync --no-clone-bundle --no-tags -j8
+repo sync -c --force-sync --no-clone-bundle --no-tags
 
 # Remove additional
 rm -rf packages/apps/SuperiorLab
