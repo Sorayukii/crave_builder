@@ -19,3 +19,8 @@ crave run --no-patch -- "curl -LSs https://raw.githubusercontent.com/Sorayukii/c
 ```
 crave run --no-patch -- "curl -LSs https://raw.githubusercontent.com/Sorayukii/crave_builder/refs/heads/master/rising_13.sh | bash"
 ```
+
+<b> - SuperiorOS_A13 </b>
+```
+crave run --no-patch -- "curl -LSs https://raw.githubusercontent.com/Sorayukii/crave_builder/refs/heads/master/supri_13.sh | bash"
+```
