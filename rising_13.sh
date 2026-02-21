@@ -13,10 +13,9 @@ rm -rf packages/apps/Eleven
 rm -rf packages/apps/Gallery2
 rm -rf packages/apps/Glimpse
 rm -rf packages/apps/Jelly
-rm -rf vendor/rising
 
 # Initialize repo
-repo init -u https://github.com/RisingOS-XTI/manifest -b thirteen --git-lfs
+repo init -u https://github.com/RisingOS-LTS/manifest -b thirteen --git-lfs
 
 # Sync the repositories
 /opt/crave/resync.sh
@@ -40,7 +39,6 @@ git clone https://github.com/LineageOS/android_packages_apps_Recorder -b lineage
 git clone https://github.com/LineageOS/android_packages_apps_Gallery2 -b lineage-20.0 packages/apps/Gallery2
 git clone https://github.com/LineageOS/android_packages_apps_Glimpse -b lineage-20.0 packages/apps/Glimpse
 git clone https://github.com/LineageOS/android_packages_apps_Jelly -b lineage-20.0 packages/apps/Jelly
-git clone https://github.com/KanonifyX/android_vendor_rising -b thirteen vendor/rising
 
 # Export
 export BUILD_USERNAME=ivy
