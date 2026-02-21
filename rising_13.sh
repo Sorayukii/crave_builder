@@ -48,7 +48,9 @@ export BUILD_HOSTNAME=crave
 source build/envsetup.sh
 
 # Build rom
-brunch aurora userdebug
+lunch lineage_aurora-userdebug
+m installclean
+mka bacon -j$(nproc --all)
 
 # Upload rom
 curl uploader.sh -T out/target/product/aurora/rising*.zip
