@@ -13,6 +13,7 @@ rm -rf packages/apps/Eleven
 rm -rf packages/apps/Gallery2
 rm -rf packages/apps/Glimpse
 rm -rf packages/apps/Jelly
+rm -rf vendor/rising
 
 # Initialize repo
 repo init -u https://github.com/RisingOS-XTI/manifest -b thirteen --git-lfs
@@ -31,7 +32,7 @@ git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 13 vend
 git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 13 vendor/sony/tama-common
 git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
-# Clone Extra Apps
+# Clone Additional
 git clone https://github.com/LineageOS/android_packages_apps_AudioFX -b lineage-20.0 packages/apps/AudioFX
 git clone https://github.com/LineageOS/android_packages_apps_Etar -b lineage-20.0 packages/apps/Etar
 git clone https://github.com/LineageOS/android_packages_apps_Eleven -b lineage-20.0 packages/apps/Eleven
@@ -39,6 +40,7 @@ git clone https://github.com/LineageOS/android_packages_apps_Recorder -b lineage
 git clone https://github.com/LineageOS/android_packages_apps_Gallery2 -b lineage-20.0 packages/apps/Gallery2
 git clone https://github.com/LineageOS/android_packages_apps_Glimpse -b lineage-20.0 packages/apps/Glimpse
 git clone https://github.com/LineageOS/android_packages_apps_Jelly -b lineage-20.0 packages/apps/Jelly
+git clone https://github.com/KanonifyX/android_vendor_rising -b thirteen vendor/rising
 
 # Export
 export BUILD_USERNAME=ivy
@@ -49,7 +51,7 @@ source build/envsetup.sh
 
 # Build rom
 lunch lineage_aurora-userdebug
-m installclean
+make installclean
 mka bacon -j$(nproc --all)
 
 # Upload rom
