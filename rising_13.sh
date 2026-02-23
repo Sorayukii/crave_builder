@@ -53,9 +53,7 @@ source build/envsetup.sh
 . build/envsetup.sh
 
 # Build rom
-lunch lineage_aurora-userdebug
-make installclean
-mka bacon -j$(nproc --all)
+brunch aurora userdebug
 
 # Upload rom
 curl uploader.sh -T out/target/product/aurora/rising*.zip
