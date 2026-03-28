@@ -3,6 +3,7 @@
 <b> - For testing </b>
 ```
 crave run --no-patch -- "curl -LSs https://raw.githubusercontent.com/Sorayukii/crave_builder/refs/heads/master/test.sh | bash"
+```
 
 <b> - CrDroid_A15 </b>
 ```
