@@ -25,9 +25,6 @@ git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 git clone https://github.com/Sorayukii/fuck-bpf
 chmod +x ./fuck-bpf/apply.sh && ./fuck-bpf/apply.sh --mb
 
-# Remove blocked 
-rm -rf device/generic/goldfish-opengl
-
 # Export
 export BUILD_USERNAME=ivy
 export BUILD_HOSTNAME=crave
