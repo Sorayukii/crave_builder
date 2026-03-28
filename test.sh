@@ -22,7 +22,7 @@ git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15
 git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
 # Fuck-bpf
-git clone https://github.com/techyminati/fuck-bpf
+git clone https://github.com/Sorayukii/fuck-bpf
 chmod +x ./fuck-bpf/apply.sh && ./fuck-bpf/apply.sh --mb
 
 # Export
@@ -30,7 +30,7 @@ export BUILD_USERNAME=ivy
 export BUILD_HOSTNAME=crave
 
 # Set up build environment
-source build/envsetup.sh
+. build/envsetup.sh
 
 # Build rom
 brunch aurora
