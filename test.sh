@@ -4,10 +4,9 @@
 rm -rf .repo/local_manifests
 
 # Initialize repo
-repo init -u https://github.com/LineageOS/android.git -b lineage-23.2 --git-lfs --no-clone-bundle
+repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
 
 # Sync the repositories
-/opt/crave/resync.sh
 /opt/crave/resync.sh
 repo sync
 
