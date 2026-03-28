@@ -1,5 +1,9 @@
 # <b> Setup Command </b>
 
+<b> - For testing </b>
+```
+crave run --no-patch -- "curl -LSs https://raw.githubusercontent.com/Sorayukii/crave_builder/refs/heads/master/test.sh | bash"
+
 <b> - CrDroid_A15 </b>
 ```
 crave run --no-patch -- "curl -LSs https://raw.githubusercontent.com/Sorayukii/crave_builder/refs/heads/master/crdroid_15.sh | bash"
