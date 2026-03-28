@@ -2,6 +2,7 @@
 
 # WARNING: This will remove all local changes!
 rm -rf .repo/local_manifests
+rm -rf prebuilts
 
 # Initialize repo
 repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
