@@ -3,18 +3,17 @@
 # WARNING: This will remove all local changes!
 rm -rf .repo/local_manifests
 rm -rf prebuilts
-rm -rf device
 
 # Initialize repo
-repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
+repo init -u https://github.com/AviumUI/android_manifests -b avium-16.2 --git-lfs
 
 # Sync the repositories
 /opt/crave/resync.sh
-repo sync
+repo sync -c --force-sync --no-clone-bundle --no-tags
 
 # Clone device tree
 git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b main kernel/sony/sdm845
-git clone https://github.com/Sorayukii/android_device_sony_aurora -b 15 device/sony/aurora
+git clone https://github.com/Sorayukii/android_device_sony_aurora -b avm device/sony/aurora
 git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 16x device/sony/tama-common
 git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 15 hardware/sony/SonyOpenTelephony
 git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 15 vendor/sony/aurora
@@ -22,15 +21,18 @@ git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15
 git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
 # Fuck-bpf
-git clone https://github.com/Sorayukii/fuck-bpf
+git clone https://github.com/Sorayukii/fuck-bpf -b lineage-23.2
 chmod +x ./fuck-bpf/apply.sh && ./fuck-bpf/apply.sh --mb
+
+# Patch
+wget https://raw.githubusercontent.com/ximi-daisy-test/daisy_manifests/refs/heads/master/lineageos-23.2/0014-fw_b-hwui-return_to_ashmem.patch
+patch -p1 < 0014-fw_b-hwui-return_to_ashmem.patch
 
 # Export
 export BUILD_USERNAME=ivy
 export BUILD_HOSTNAME=crave
 
-# Set up build environment
-. build/envsetup.sh
-
 # Build rom
-brunch aurora
+. build/envsetup.sh
+lunch lineage_aurora-bp4a-userdebug
+m bacon -j$(nproc --all)
