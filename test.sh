@@ -21,7 +21,7 @@ git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15
 git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
 # Fuck-bpf
-git clone https://github.com/Sorayukii/fuck-bpf -b lineage-23.2
+git clone https://github.com/techyminati/fuck-bpf -b lineage-23.2
 chmod +x ./fuck-bpf/apply.sh && ./fuck-bpf/apply.sh --mb
 
 # Patch
