@@ -17,7 +17,7 @@ git clone https://github.com/Sorayukii/android_device_sony_aurora -b avm device/
 git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 16x device/sony/tama-common
 git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 15 hardware/sony/SonyOpenTelephony
 git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 15 vendor/sony/aurora
-git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15 vendor/sony/tama-common
+git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 16x vendor/sony/tama-common
 git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
 # Fuck-bpf
