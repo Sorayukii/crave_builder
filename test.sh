@@ -1,8 +1,15 @@
 #!/bin/bash
 
-# WARNING: This will remove all local changes!
+# Remove local changes
 rm -rf .repo/local_manifests
 rm -rf prebuilts
+rm -rf kernel/sony/sdm845
+rm -rf device/sony/tama-common
+rm -rf device/sony/aurora
+rm -rf hardware/sony/SonyOpenTelephony
+rm -rf vendor/sony/tama-common
+rm -rf vendor/sony/aurora
+rm -rf vendor/lineage-priv
 
 # Initialize repo
 repo init -u https://github.com/AviumUI/android_manifests -b avium-16.2 --git-lfs
