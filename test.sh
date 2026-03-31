@@ -37,7 +37,7 @@ chmod +x ./fuck-bpf/apply.sh && ./fuck-bpf/apply.sh --mb
 
 # Patch
 wget https://raw.githubusercontent.com/ximi-daisy-test/daisy_manifests/refs/heads/master/lineageos-23.2/0014-fw_b-hwui-return_to_ashmem.patch
-patch -p1 < 0014-fw_b-hwui-return_to_ashmem.patch
+patch -p1 <0014-fw_b-hwui-return_to_ashmem.patch
 
 # Export
 export BUILD_USERNAME=ivy
