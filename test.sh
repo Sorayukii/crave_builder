@@ -18,6 +18,10 @@ repo init -u https://github.com/AviumUI/android_manifests -b avium-16.2 --git-lf
 /opt/crave/resync.sh
 repo sync -c --force-sync --no-clone-bundle --no-tags
 
+# Try fix issue
+rm -rf hardware/lineage/compat
+git clone https://github.com/Ivy-4869/android_hardware_lineage_compat -b lineage-23.2 hardware/lineage/compat
+
 # Clone device tree
 git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b main kernel/sony/sdm845
 git clone https://github.com/Sorayukii/android_device_sony_aurora -b avm device/sony/aurora
