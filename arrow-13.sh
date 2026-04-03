@@ -27,6 +27,10 @@ git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 13
 # Clone libncurses
 git clone https://github.com/LineageOS/android_external_libncurses -b lineage-20.0 external/libncurses
 
+# Replace clang
+rm -rf prebuilts/clang/host/linux-x86/clang-r487747c
+git clone --depth=1 https://gitlab.com/kei-space/clang/r487747c -b master prebuilts/clang/host/linux-x86/clang-r487747c
+
 # Export
 export BUILD_USERNAME=ivy
 export BUILD_HOSTNAME=crave
