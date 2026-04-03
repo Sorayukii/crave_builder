@@ -27,9 +27,9 @@ git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 13
 # Clone libncurses
 git clone https://github.com/LineageOS/android_external_libncurses -b lineage-20.0 external/libncurses
 
-# Replace clang
-rm -rf prebuilts/clang/host/linux-x86/clang-r487747c
-git clone --depth=1 https://gitlab.com/kei-space/clang/r487747c -b master prebuilts/clang/host/linux-x86/clang-r487747c
+# Symlink libncurses 6 >> 5 for Q based
+sudo ln -s /usr/lib/x86_64-linux-gnu/libncurses.so.6 /usr/lib/x86_64-linux-gnu/libncurses.so.5
+sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6   /usr/lib/x86_64-linux-gnu/libtinfo.so.5
 
 # Export
 export BUILD_USERNAME=ivy
