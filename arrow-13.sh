@@ -24,9 +24,6 @@ git clone https://github.com/Sorayukii/proprietary_vendor_sony_akari -b 13 vendo
 git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 13 vendor/sony/tama-common
 # git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
-# Clone libncurses
-git clone https://github.com/LineageOS/android_external_libncurses -b lineage-20.0 external/libncurses
-
 # Symlink libncurses 6 >> 5 for Q based
 sudo ln -s /usr/lib/x86_64-linux-gnu/libncurses.so.6 /usr/lib/x86_64-linux-gnu/libncurses.so.5
 sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6   /usr/lib/x86_64-linux-gnu/libtinfo.so.5
