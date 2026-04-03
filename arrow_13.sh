@@ -9,38 +9,29 @@ rm -rf vendor/sony
 rm -rf vendor/lineage-priv
 
 # Initialize repo
-repo init -u https://github.com/Arrow-OS-Extended/android_manifest.git -b arrow-13.1 --git-lfs
+repo init -u https://github.com/ArrowOS-T/android_manifest.git -b arrow-13.1_ext
 
 # Sync the repositories
 /opt/crave/resync.sh
-/opt/crave/resync.sh
-repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j8
+repo sync
 
 # Clone device tree
-git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
-git clone https://github.com/Sorayukii/android_device_sony_aurora -b arrow-13 device/sony/aurora
+git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b main kernel/sony/sdm845
+git clone https://github.com/Sorayukii/android_device_sony_akari -b arw-ext device/sony/akari
 git clone https://github.com/Sorayukii/android_device_sony_tama-common -b aosp-13 device/sony/tama-common
 git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 13 hardware/sony/SonyOpenTelephony
-git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 13 vendor/sony/aurora
+git clone https://github.com/Sorayukii/proprietary_vendor_sony_akari -b 13 vendor/sony/akari
 git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 13 vendor/sony/tama-common
-git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
-
-# Clone Extra Apps
-git clone https://github.com/LineageOS/android_packages_apps_Recorder -b lineage-20.0 packages/apps/Recorder
-git clone https://github.com/LineageOS/android_external_libncurses -b lineage-20.0 external/libncurses
-
+# git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
 # Export
 export BUILD_USERNAME=ivy
 export BUILD_HOSTNAME=crave
 
 # Set up build environment
-source build/envsetup.sh
+. build/envsetup.sh
 
 # Build rom
-lunch arrow_aurora-userdebug
-export ALLOW_MISSING_DEPENDENCIES=true
+lunch arrow_akari-userdebug
 m bacon
 
-# Upload rom
-curl uploader.sh -T out/target/product/aurora/Arrow*.zip
