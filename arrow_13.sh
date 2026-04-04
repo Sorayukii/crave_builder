@@ -17,10 +17,10 @@ repo sync
 
 # Clone device tree
 git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b main kernel/sony/sdm845
-git clone https://github.com/Sorayukii/android_device_sony_akari -b arrow-13 device/sony/akari
+git clone https://github.com/Sorayukii/android_device_sony_aurora -b arrow-13 device/sony/aurora
 git clone https://github.com/Sorayukii/android_device_sony_tama-common -b aosp-13 device/sony/tama-common
 git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 13 hardware/sony/SonyOpenTelephony
-git clone https://github.com/Sorayukii/proprietary_vendor_sony_akari -b 13 vendor/sony/akari
+git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 13 vendor/sony/aurora
 git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 13 vendor/sony/tama-common
 # git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
@@ -36,6 +36,6 @@ export BUILD_HOSTNAME=crave
 . build/envsetup.sh
 
 # Build rom
-lunch arrow_akari-userdebug
+lunch arrow_aurora-userdebug
 m bacon
 
