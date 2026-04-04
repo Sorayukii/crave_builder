@@ -24,6 +24,12 @@ git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 13 vend
 git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 13 vendor/sony/tama-common
 # git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
+# Replace art and bionic
+rm -rf art
+rm -rf bionic
+git clone https://android.googlesource.com/platform/art -b android-13.0.0_r75 art
+git clone https://github.com/LineageOS/android_bionic -b lineage-20.0 bionic
+
 # Symlink libncurses 6 >> 5 for Q based
 sudo ln -s /usr/lib/x86_64-linux-gnu/libncurses.so.6 /usr/lib/x86_64-linux-gnu/libncurses.so.5
 sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6   /usr/lib/x86_64-linux-gnu/libtinfo.so.5
@@ -36,5 +42,5 @@ export BUILD_HOSTNAME=crave
 . build/envsetup.sh
 
 # Build rom
-lunch arrow_aurora-userdebug
-m bacon
+lunch derp_aurora-userdebug
+mka derp
