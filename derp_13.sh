@@ -29,7 +29,7 @@ git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 13
 rm -rf art
 rm -rf bionic
 git clone https://github.com/ArrowOS/android_art -b arrow-13.1 art
-git clone https://github.com/ArrowOS-T/android_bionic -b arrow-13.1 bionic
+git clone https://github.com/ArrowOS/android_bionic -b arrow-13.1 bionic
 
 # Symlink libncurses 6 >> 5 for Q based
 sudo ln -s /usr/lib/x86_64-linux-gnu/libncurses.so.6 /usr/lib/x86_64-linux-gnu/libncurses.so.5
