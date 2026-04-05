@@ -7,6 +7,7 @@ rm -rf device/sony
 rm -rf hardware/sony
 rm -rf vendor/sony
 rm -rf vendor/lineage-priv
+rm -rf external/chromium-webview
 
 # Initialize repo
 repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 13
