@@ -23,7 +23,7 @@ git clone https://github.com/Sorayukii/android_device_sony_tama-common -b aosp-1
 git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 13 hardware/sony/SonyOpenTelephony
 git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 13 vendor/sony/aurora
 git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 13 vendor/sony/tama-common
-# git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
+git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
 # Replace art and bionic
 rm -rf art
