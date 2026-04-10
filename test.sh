@@ -32,5 +32,5 @@ export BUILD_HOSTNAME=crave
 
 # Build rom
 . build/envsetup.sh
-lunch lineage_aurora-bp1a-userdebug
+lunch lineage_aurora-bp1a-user
 m evolution
