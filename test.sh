@@ -135,12 +135,17 @@ start_build_process() {
 
     # Clone device tree
     git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
-    git clone https://github.com/Sorayukii/android_device_sony_aurora -b evox-15 device/sony/aurora
+    git clone https://github.com/Sorayukii/android_device_sony_aurora -b 15 device/sony/aurora
     git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 15x device/sony/tama-common
     git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 15 hardware/sony/SonyOpenTelephony
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 15 vendor/sony/aurora
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15 vendor/sony/tama-common
     git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
+
+    # Declare flags
+    export TARGET_INCLUDE_ACCORD=false
+    export WITH_GMS=false
+
 
     # Setup the build environment
     . build/envsetup.sh
