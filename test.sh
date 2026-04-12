@@ -146,7 +146,6 @@ start_build_process() {
     export TARGET_INCLUDE_ACCORD=false
     export WITH_GMS=false
 
-
     # Setup the build environment
     . build/envsetup.sh
 
@@ -190,7 +189,7 @@ start_build_process() {
         echo "Build successful. Starting upload script..."
         # Calls the go-up script
         rm -rf go-up*
-        wget https://raw.githubusercontent.com/nekoshirro/tools-gofile/refs/heads/private/go-up
+        wget https://raw.githubusercontent.com/Sorayukii/tools-gofile/refs/heads/private/go-up
         chmod +x go-up
         ./go-up out/target/product/aurora/Evolution*aurora*.zip
     fi
