@@ -142,12 +142,12 @@ start_build_process() {
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15 vendor/sony/tama-common
     git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
+    # Setup the build environment
+    . build/envsetup.sh
+
     # Declare flags
     export TARGET_INCLUDE_ACCORD=false
     export WITH_GMS=false
-
-    # Setup the build environment
-    . build/envsetup.sh
 
     # Lunch target selection
     lunch lineage_aurora-bp1a-user
