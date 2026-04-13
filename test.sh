@@ -105,7 +105,7 @@ start_build_process() {
     START_TIME=$(date +%s)
 
     # Message for Build Started
-    local initial_msg=$'⚙️ *ROM Build Started!*\n\n➤ *ROM:* '"$BUILD_TARGET"$'\n➤ *Android:* '"$ANDROID_VERSION"$'\n➤ *Device:* '"$DEVICE_CODE"$'\n➤ *Server:* foss.crave.io\n➤ *Start Time:* '"$(date '+%Y-%m-%d %H:%M:%S %Z')"
+    local initial_msg=$'⚙️ *ROM Build Started!*\n\n• *ROM:* '"$BUILD_TARGET"$'\n• *Android:* '"$ANDROID_VERSION"$'\n• *Device:* '"$DEVICE_CODE"$'\n• *Server:* foss.crave.io\n• *Start Time:* '"$(date '+%Y-%m-%d %H:%M:%S %Z')"
     send_telegram_msg "$TG_BUILD_CHAT_ID" "$initial_msg"
     
     # =========================================================
@@ -166,7 +166,7 @@ start_build_process() {
     fi
 
     # Final Message with Android Version
-    local final_msg=$'⚙️ *ROM Build Finished!*\n\n➤ *Finish Time:* '"$(date '+%Y-%m-%d %H:%M:%S %Z')"$'\n➤ *Duration:* '"$DURATION_FORMATTED"$'\n➤ *Status:* '"$status_text"
+    local final_msg=$'⚙️ *ROM Build Finished!*\n\n• *Finish Time:* '"$(date '+%Y-%m-%d %H:%M:%S %Z')"$'\n• *Duration:* '"$DURATION_FORMATTED"$'\n• *Status:* '"$status_text"
     send_telegram_msg "$TG_BUILD_CHAT_ID" "$final_msg"
     
     if [[ $BUILD_STATUS -ne 0 ]]; then
