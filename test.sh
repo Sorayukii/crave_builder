@@ -23,50 +23,14 @@ export BUILD_HOSTNAME=crave
 send_telegram_msg() {
   local chat_id="$1"
   local message="$2"
-  
-  # 1. Escape MarkdownV2 special characters that are NOT intended for formatting
-  # Temporarily replace '*' and '_' to preserve bold/italic formatting
-  local escaped_message=$(echo "$message" | sed \
-    -e 's/\*/\*TEMP\*/g' \
-    -e 's/_/\_TEMP\_/g' \
-    -e 's/\[/\\[/g' \
-    -e 's/\]/\\]/g' \
-    -e 's/(/\\(/g' \
-    -e 's/)/\\)/g' \
-    -e 's/~/\\~/g' \
-    -e 's/`/\`/g' \
-    -e 's/>/\\>/g' \
-    -e 's/#/\\#/g' \
-    -e 's/+/\\+/g' \
-    -e 's/-/\\-/g' \
-    -e 's/=/\\=/g' \
-    -e 's/|/\\|/g' \
-    -e 's/{/\\{/g' \
-    -e 's/}/\\}/g' \
-    -e 's/\./\\./g' \
-    -e 's/!/\\!/g')
 
-  # 2. Restore the actual formatting characters (* and _)
-  local re_escaped_message=$(echo "$escaped_message" | sed \
-    -e 's/\*TEMP\*/\*/g' \
-    -e 's/\_TEMP\_/\_/g')
+  echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] Sending message to Telegram..."
 
-  # 3. URL encode special characters for safe HTTP transmission
-  local encoded_message=$(echo "$re_escaped_message" | sed \
-    -e 's/%/%25/g' \
-    -e 's/&/%26/g' \
-    -e 's/+/%2b/g' \
-    -e 's/ /%20/g' \
-    -e 's/\"/%22/g' \
-    -e 's/'"'"'/%27/g' \
-    -e 's/\n/%0A/g')
-    
-  # Send message using Telegram Bot API with MarkdownV2 parsing
   curl -s -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMessage" \
     -d "chat_id=${chat_id}" \
-    -d "text=${encoded_message}" \
-    -d "parse_mode=MarkdownV2" \
-    -d "disable_web_page_preview=true" > /dev/null
+    --data-urlencode "text=${message}" \
+    -d "parse_mode=HTML" \
+    -d "disable_web_page_preview=true" &> /dev/null
 }
 
 send_telegram_file() {
@@ -105,7 +69,7 @@ start_build_process() {
     START_TIME=$(date +%s)
 
     # Message for Build Started
-    local initial_msg=$'⚙️ *ROM Build Started!*\n\n• *ROM:* '"$BUILD_TARGET"$'\n• *Android:* '"$ANDROID_VERSION"$'\n• *Device:* '"$DEVICE_CODE"$'\n• *Server:* foss.crave.io\n• *Start Time:* '"$(date '+%Y-%m-%d %H:%M:%S %Z')"
+    local initial_msg=$'⚙️ <b>ROM Build Started!</b>\n\n• <b>ROM:</b> '"$BUILD_TARGET"$'\n• <b>Android:</b> '"$ANDROID_VERSION"$'\n• <b>Device:</b> '"$DEVICE_CODE"$'\n• <b>Server:</b> foss.crave.io\n• <b>Start Time:</b> '"$(date '+%Y-%m-%d %H:%M:%S %Z')"
     send_telegram_msg "$TG_BUILD_CHAT_ID" "$initial_msg"
     
     # =========================================================
