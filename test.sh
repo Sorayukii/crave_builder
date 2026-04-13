@@ -165,18 +165,13 @@ start_build_process() {
     local DURATION_FORMATTED=$(format_duration $DURATION)
     
     if [[ $BUILD_STATUS -eq 0 ]]; then
-        local status_icon="✅"
         local status_text="Success"
     else
-        local status_icon="❌"
         local status_text="Failure (Exit Code: $BUILD_STATUS)"
     fi
 
     # Final Message with Android Version
-    local final_msg="${status_icon} *Build Finished!*
-    *ROM:* $BUILD_TARGET
-    *Android:* $ANDROID_VERSION
-    *Device:* $DEVICE_CODE
+    local final_msg="⚙️ *ROM Build Finished!*
     *Duration:* $DURATION_FORMATTED
     *Status:* $status_text"
     send_telegram_msg "$TG_BUILD_CHAT_ID" "$final_msg"
