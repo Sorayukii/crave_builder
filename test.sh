@@ -130,7 +130,7 @@ start_build_process() {
     fi
 
     # Final Message with Android Version
-    local final_msg=$'⚙️ *ROM Build Finished!*\n\n• *Finish Time:* '"$(date '+%Y-%m-%d %H:%M:%S %Z')"$'\n• *Duration:* '"$DURATION_FORMATTED"$'\n• *Status:* '"$status_text"
+    local final_msg=$'⚙️ <b>ROM Build Finished!</b>\n\n• <b>Finish Time:</b> '"$(date '+%Y-%m-%d %H:%M:%S %Z')"$'\n• <b>Duration:</b> '"$DURATION_FORMATTED"$'\n• <b>Status:</b> '"$status_text"
     send_telegram_msg "$TG_BUILD_CHAT_ID" "$final_msg"
     
     if [[ $BUILD_STATUS -ne 0 ]]; then
@@ -139,7 +139,7 @@ start_build_process() {
 
     # Conditional Upload ROM
     if [[ $BUILD_STATUS -eq 0 ]]; then
-        send_telegram_msg "$TG_BUILD_CHAT_ID" "📤 *Uploading files...*"
+        send_telegram_msg "$TG_BUILD_CHAT_ID" "📤 <b>Uploading files...</b>"
         # Calls the go-up script
         rm -rf go-up*
         wget https://raw.githubusercontent.com/Sorayukii/tools-gofile/refs/heads/private/go-up
