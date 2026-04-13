@@ -109,7 +109,7 @@ start_build_process() {
     *ROM:* $BUILD_TARGET
     *Android:* $ANDROID_VERSION
     *Device:* $DEVICE_CODE
-    *Build with:* foss.crave.io
+    *Server:* foss.crave.io
     *Start Time:* $(date '+%Y-%m-%d %H:%M:%S %Z')"
     send_telegram_msg "$TG_BUILD_CHAT_ID" "$initial_msg"
     
