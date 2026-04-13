@@ -172,6 +172,7 @@ start_build_process() {
 
     # Final Message with Android Version
     local final_msg="⚙️ *ROM Build Finished!*
+    *Finish Time:* $(date '+%Y-%m-%d %H:%M:%S %Z')"
     *Duration:* $DURATION_FORMATTED
     *Status:* $status_text"
     send_telegram_msg "$TG_BUILD_CHAT_ID" "$final_msg"
