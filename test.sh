@@ -175,7 +175,7 @@ start_build_process() {
 
     # Conditional Upload ROM
     if [[ $BUILD_STATUS -eq 0 ]]; then
-        send_telegram_msg "$TG_BUILD_CHAT_ID" "📤 Uploading files..."
+        send_telegram_msg "$TG_BUILD_CHAT_ID" "📤 *Uploading files...*"
         # Calls the go-up script
         rm -rf go-up*
         wget https://raw.githubusercontent.com/Sorayukii/tools-gofile/refs/heads/private/go-up
