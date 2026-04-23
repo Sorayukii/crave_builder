@@ -86,16 +86,16 @@ start_build_process() {
     rm -rf vendor/sony/aurora
     rm -rf vendor/lineage-priv
 
-    # Init Evolution-X
-    repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
+    # Init AlphaDroid
+    repo init -u https://github.com/alphadroid-project/manifest -b alpha-15.2 --git-lfs
 
     # Resync sources
     /opt/crave/resync.sh
-    repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+    repo sync
 
     # Clone device tree
     git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
-    git clone https://github.com/Sorayukii/android_device_sony_aurora -b 15 device/sony/aurora
+    git clone https://github.com/Sorayukii/android_device_sony_aurora -b alpha-15 device/sony/aurora
     git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 15x device/sony/tama-common
     git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 15 hardware/sony/SonyOpenTelephony
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 15 vendor/sony/aurora
@@ -109,11 +109,8 @@ start_build_process() {
     export TARGET_INCLUDE_ACCORD=false
     export WITH_GMS=false
 
-    # Lunch target selection
-    lunch lineage_aurora-bp1a-user
-    
     # Build rom
-    m evolution
+    brunch aurora
 
     BUILD_STATUS=$? # Capture exit code immediately
 
