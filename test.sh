@@ -7,8 +7,8 @@
 TG_BOT_TOKEN="8153933976:AAHLza4gwShckhzAydZxJWGYFKYrgEO5MVE"
 TG_BUILD_CHAT_ID="-1002476597056"
 DEVICE_CODE="aurora"
-BUILD_TARGET="Evolution-X"
-ANDROID_VERSION="15"
+BUILD_TARGET="crDroid"
+ANDROID_VERSION="16"
 
 # SHELL CONFIGURATION
 export TZ="Asia/Jakarta"
@@ -86,28 +86,24 @@ start_build_process() {
     rm -rf vendor/sony/aurora
     rm -rf vendor/lineage-priv
 
-    # Init AlphaDroid
-    repo init -u https://github.com/alphadroid-project/manifest -b alpha-15.2 --git-lfs
+    # Init ROM repository
+    repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
 
     # Resync sources
     /opt/crave/resync.sh
-    repo sync
+    repo sync --force-sync
 
     # Clone device tree
-    git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b stock kernel/sony/sdm845
-    git clone https://github.com/Sorayukii/android_device_sony_aurora -b alpha-15 device/sony/aurora
-    git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 15x device/sony/tama-common
+    git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b main kernel/sony/sdm845
+    git clone https://github.com/Sorayukii/android_device_sony_aurora -b 15 device/sony/aurora
+    git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 16x device/sony/tama-common
     git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 15 hardware/sony/SonyOpenTelephony
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 15 vendor/sony/aurora
-    git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15 vendor/sony/tama-common
+    git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 16x vendor/sony/tama-common
     git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
     # Setup the build environment
     . build/envsetup.sh
-
-    # Declare flags
-    export TARGET_INCLUDE_ACCORD=false
-    export WITH_GMS=false
 
     # Build rom
     brunch aurora
