@@ -87,15 +87,15 @@ start_build_process() {
     rm -rf vendor/lineage-priv
 
     # Init ROM repository
-    repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
+    repo init -u https://github.com/AxionAOSP/android.git -b lineage-23.2 --git-lfs
 
     # Resync sources
     /opt/crave/resync.sh
-    repo sync --force-sync
+    repo sync
 
     # Clone device tree
     git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b bpf kernel/sony/sdm845
-    git clone https://github.com/Sorayukii/android_device_sony_aurora -b 15 device/sony/aurora
+    git clone https://github.com/Sorayukii/android_device_sony_aurora -b axion-16 device/sony/aurora
     git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 16x device/sony/tama-common
     git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 15 hardware/sony/SonyOpenTelephony
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 15 vendor/sony/aurora
@@ -106,7 +106,8 @@ start_build_process() {
     . build/envsetup.sh
 
     # Build rom
-    brunch aurora
+    axion aurora va
+    ax -br -j$(nproc --all)
 
     BUILD_STATUS=$? # Capture exit code immediately
 
