@@ -102,6 +102,10 @@ start_build_process() {
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 16x vendor/sony/tama-common
     git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
+    # Replace hardware/interfaces
+    rm -rf hardware/interfaces
+    git clone https://github.com/Sorayukii/android_hardware_interfaces -b lineage-23.2 hardware/interfaces
+
     # Setup the build environment
     . build/envsetup.sh
 
