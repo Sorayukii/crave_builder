@@ -116,6 +116,9 @@ start_build_process() {
     # Setup the build environment
     . build/envsetup.sh
 
+    # Custom flag
+    export TARGET_DISABLE_MATLOG=true
+
     # Start building
     brunch aurora
 
