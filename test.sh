@@ -115,7 +115,6 @@ start_build_process() {
 
     # Setup the build environment
     . build/envsetup.sh
-    axion aurora va
 
     # Start building
     brunch aurora
