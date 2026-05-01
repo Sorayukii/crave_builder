@@ -78,9 +78,6 @@ start_build_process() {
     
     # Remove local changes
     rm -rf .repo/local_manifests
-    rm -rf bionic
-    rm -rf build/make
-    rm -rf build/soong
     rm -rf kernel/sony/sdm845
     rm -rf device/sony/tama-common
     rm -rf device/sony/aurora
@@ -104,14 +101,6 @@ start_build_process() {
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 15 vendor/sony/aurora
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15 vendor/sony/tama-common
     git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
-
-    # Fix camera
-    rm -rf bionic
-    rm -rf build/make
-    rm -rf build/soong
-    git clone https://github.com/Sorayukii/android_bionic -b luna-16.2 bionic
-    git clone https://github.com/Sorayukii/android_build -b luna-16.2 build/make
-    git clone https://github.com/Sorayukii/android_build_soong -b luna-16.2 build/soong
 
     # Setup the build environment
     . build/envsetup.sh
