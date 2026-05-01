@@ -7,7 +7,7 @@
 TG_BOT_TOKEN="8153933976:AAHLza4gwShckhzAydZxJWGYFKYrgEO5MVE"
 TG_BUILD_CHAT_ID="-1002476597056"
 DEVICE_CODE="aurora"
-BUILD_TARGET="crDroid"
+BUILD_TARGET="LunarisAOSP"
 ANDROID_VERSION="16"
 
 # SHELL CONFIGURATION
@@ -90,16 +90,16 @@ start_build_process() {
     rm -rf vendor/lineage-priv
 
     # Init ROM repository
-    repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
+    repo init -u https://github.com/Lunaris-AOSP/android -b 16.2 --git-lfs
 
     # Resync sources
     /opt/crave/resync.sh
-    repo sync
+    repo sync --force-sync --no-clone-bundle --no-tags
 
     # Clone device tree
     git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b bpf kernel/sony/sdm845
     git clone https://github.com/Sorayukii/android_device_sony_aurora -b 15 device/sony/aurora
-    git clone https://github.com/Sorayukii/android_device_sony_tama-common -b cr-16.0 device/sony/tama-common
+    git clone https://github.com/Sorayukii/android_device_sony_tama-common -b luna-16.2 device/sony/tama-common
     git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 15 hardware/sony/SonyOpenTelephony
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 15 vendor/sony/aurora
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15 vendor/sony/tama-common
@@ -109,15 +109,18 @@ start_build_process() {
     rm -rf bionic
     rm -rf build/make
     rm -rf build/soong
-    git clone https://github.com/Sorayukii/android_bionic -b cr-16.0 bionic
-    git clone https://github.com/Sorayukii/android_build -b cr-16.0 build/make
-    git clone https://github.com/Sorayukii/android_build_soong -b cr-16.0 build/soong
+    git clone https://github.com/Sorayukii/android_bionic -b luna-16.2 bionic
+    git clone https://github.com/Sorayukii/android_build -b luna-16.2 build/make
+    git clone https://github.com/Sorayukii/android_build_soong -b luna-16.2 build/soong
 
     # Setup the build environment
     . build/envsetup.sh
 
     # Custom flag
     export TARGET_DISABLE_MATLOG=true
+    export WITH_BCR=true
+    export USE_REALITY_ENGINE=true
+    echo "ro.lunaris.maintainer=Ivy" >> device/sony/aurora/system.prop
 
     # Start building
     brunch aurora
