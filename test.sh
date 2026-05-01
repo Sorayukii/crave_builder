@@ -123,7 +123,8 @@ start_build_process() {
     echo "ro.lunaris.maintainer=Ivy" >> device/sony/aurora/system.prop
 
     # Start building
-    brunch aurora
+    lunch lineage_aurora-bp4a-userdebug
+    m bacon
 
     BUILD_STATUS=$? # Capture exit code immediately
 
