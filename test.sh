@@ -78,17 +78,19 @@ start_build_process() {
     
     # Remove local changes
     rm -rf .repo/local_manifests
+    rm -rf bionic
+    rm -rf build/make
+    rm -rf build/soong
     rm -rf kernel/sony/sdm845
     rm -rf device/sony/tama-common
     rm -rf device/sony/aurora
-    rm -rf hardware/interfaces
     rm -rf hardware/sony/SonyOpenTelephony
     rm -rf vendor/sony/tama-common
     rm -rf vendor/sony/aurora
     rm -rf vendor/lineage-priv
 
     # Init ROM repository
-    repo init -u https://github.com/AxionAOSP/android.git -b lineage-23.2 --git-lfs
+    repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
 
     # Resync sources
     /opt/crave/resync.sh
@@ -103,20 +105,20 @@ start_build_process() {
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 16x vendor/sony/tama-common
     git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
+    # Fix camera
+    rm -rf bionic
+    rm -rf build/make
+    rm -rf build/soong
+    git clone https://github.com/Sorayukii/android_bionic -b cr-16.0 bionic
+    git clone https://github.com/Sorayukii/android_build -b cr-16.0 build/make
+    git clone https://github.com/Sorayukii/android_build_soong -b cr-16.0 build/soong
+
     # Setup the build environment
     . build/envsetup.sh
     axion aurora va
 
-    # Axion sync
-    axionSync
-
-    # Replace hardware/interfaces
-    rm -rf hardware/interfaces
-    git clone https://github.com/Sorayukii/android_hardware_interfaces -b lineage-23.2 hardware/interfaces
-
     # Start building
-    axion aurora va
-    ax -br -j$(nproc --all)
+    brunch aurora
 
     BUILD_STATUS=$? # Capture exit code immediately
 
