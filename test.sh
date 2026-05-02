@@ -112,6 +112,7 @@ start_build_process() {
     echo "ro.lunaris.maintainer=Ivy" >> device/sony/aurora/system.prop
 
     # Start building
+    rm -rf out/target/product/aurora/*
     lunch lineage_aurora-bp4a-userdebug
     m bacon
 
