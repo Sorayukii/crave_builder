@@ -4,7 +4,7 @@
 # CONFIGURATION
 # =========================================================
 # This token was retrieved from your previous log for continuous functionality.
-TG_BOT_TOKEN="7636002046:AAEb3XN3rMHDCV24ZFVqhmdwt_heTXBgy1k"
+TG_BOT_TOKEN="8153933976:AAFTett-M8ovbPzYfKeG0F2srZxfqCZmMfg"
 TG_BUILD_CHAT_ID="-1002476597056"
 DEVICE_CODE="aurora"
 BUILD_TARGET="Evolution-X"
