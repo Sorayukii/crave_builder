@@ -4,11 +4,11 @@
 # CONFIGURATION
 # =========================================================
 # This token was retrieved from your previous log for continuous functionality.
-TG_BOT_TOKEN="8153933976:AAHLza4gwShckhzAydZxJWGYFKYrgEO5MVE"
+TG_BOT_TOKEN="7636002046:AAEb3XN3rMHDCV24ZFVqhmdwt_heTXBgy1k"
 TG_BUILD_CHAT_ID="-1002476597056"
 DEVICE_CODE="aurora"
-BUILD_TARGET="LunarisAOSP"
-ANDROID_VERSION="16"
+BUILD_TARGET="Evolution-X"
+ANDROID_VERSION="15"
 
 # SHELL CONFIGURATION
 export TZ="Asia/Jakarta"
@@ -60,7 +60,7 @@ format_duration() {
 
 
 # =========================================================
-# BUILD LOGIC FUNCTION
+# BUILD FUNCTION
 # =========================================================
 
 start_build_process() {
@@ -68,19 +68,12 @@ start_build_process() {
     # --- STEP 1: START TIMER AND SEND INITIAL NOTIFICATION ---
     START_TIME=$(date +%s)
 
-    # Message for Build Started
+    # Message for build started
     local initial_msg=$'⚙️ <b>ROM Build Started!</b>\n\n• <b>ROM:</b> '"$BUILD_TARGET"$'\n• <b>Android:</b> '"$ANDROID_VERSION"$'\n• <b>Device:</b> '"$DEVICE_CODE"$'\n• <b>Server:</b> foss.crave.io\n• <b>Start Time:</b> '"$(date '+%Y-%m-%d %H:%M:%S %Z')"
     send_telegram_msg "$TG_BUILD_CHAT_ID" "$initial_msg"
     
-    # =========================================================
-    # ORIGINAL BUILD STEPS
-    # =========================================================
-    
     # Remove local changes
     rm -rf .repo/local_manifests
-    rm -rf bionic
-    rm -rf build/make
-    rm -rf build/soong
     rm -rf kernel/sony/sdm845
     rm -rf device/sony/tama-common
     rm -rf device/sony/aurora
@@ -89,47 +82,38 @@ start_build_process() {
     rm -rf vendor/sony/aurora
     rm -rf vendor/lineage-priv
 
-    # Init ROM repository
-    repo init -u https://github.com/Lunaris-AOSP/android -b 16.2 --git-lfs
+    # Init android manifest
+    repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
 
     # Resync sources
     /opt/crave/resync.sh
-    repo sync --force-sync --no-clone-bundle --no-tags
+    repo sync -c --force-sync --no-clone-bundle --no-tags
 
     # Clone device tree
-    git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b bpf kernel/sony/sdm845
-    git clone https://github.com/Sorayukii/android_device_sony_aurora -b 16.2-luna device/sony/aurora
-    git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 16 device/sony/tama-common
+    git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b main kernel/sony/sdm845
+    git clone https://github.com/Sorayukii/android_device_sony_aurora -b 15 device/sony/aurora
+    git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 15 device/sony/tama-common
     git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 15 hardware/sony/SonyOpenTelephony
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 15 vendor/sony/aurora
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15 vendor/sony/tama-common
     git clone https://github.com/Sorayukii/priv-keys -b master vendor/lineage-priv
 
-    # Replace repository
-    rm -rf bionic
-    rm -rf build/make
-    rm -rf build/soong
-    git clone https://github.com/Sorayukii/android_bionic -b luna-16.2 bionic
-    git clone https://github.com/Sorayukii/android_build -b luna-16.2 build/make
-    git clone https://github.com/Sorayukii/android_build_soong -b luna-16.2 build/soong
-
     # Setup the build environment
     . build/envsetup.sh
 
-    # Custom flag
-    export TARGET_DISABLE_MATLOG=true
-    export WITH_BCR=true
-    export USE_REALITY_ENGINE=true
-    echo "ro.lunaris.maintainer=Ivy" >> device/sony/aurora/system.prop
+    # Declare flags
+    export TARGET_INCLUDE_ACCORD=false
+    export WITH_GMS=false
 
-    # Start building
-    rm -rf out/target/product/aurora/*
-    lunch lineage_aurora-bp4a-userdebug
-    m bacon
+    # Lunch target selection
+    lunch lineage_aurora-bp1a-userdebug
+    
+    # Build ROM
+    m evolution
 
     BUILD_STATUS=$? # Capture exit code immediately
 
-    # --- STEP 3: CALCULATE TIME AND SEND FINAL NOTIFICATION ---
+    # --- STEP 2: CALCULATE TIME AND SEND FINAL NOTIFICATION ---
     END_TIME=$(date +%s)
     DURATION=$((END_TIME - START_TIME))
     
@@ -141,7 +125,7 @@ start_build_process() {
         local status_text="Failure (Exit Code: $BUILD_STATUS)"
     fi
 
-    # Final Message with Android Version
+    # Message for build finished
     local final_msg=$'⚙️ <b>ROM Build Finished!</b>\n\n• <b>Finish Time:</b> '"$(date '+%Y-%m-%d %H:%M:%S %Z')"$'\n• <b>Duration:</b> '"$DURATION_FORMATTED"$'\n• <b>Status:</b> '"$status_text"
     send_telegram_msg "$TG_BUILD_CHAT_ID" "$final_msg"
     
@@ -149,14 +133,14 @@ start_build_process() {
         send_telegram_file "$TG_BUILD_CHAT_ID" "out/error.log"
     fi
 
-    # Conditional Upload ROM
+    # Upload ROM
     if [[ $BUILD_STATUS -eq 0 ]]; then
         send_telegram_msg "$TG_BUILD_CHAT_ID" "📤 <b>Uploading files...</b>"
         # Calls the go-up script
         rm -rf go-up*
         wget https://raw.githubusercontent.com/Sorayukii/tools-gofile/refs/heads/private/go-up
         chmod +x go-up
-        ./go-up out/target/product/aurora/*aurora*.zip
+        ./go-up out/target/product/aurora/Evolution*aurora*.zip
     fi
 }
 
@@ -164,5 +148,5 @@ start_build_process() {
 # MAIN EXECUTION
 # =========================================================
 
-# Check required environment variables (optional but good practice)
+# Start building
 start_build_process
