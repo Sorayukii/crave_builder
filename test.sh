@@ -102,7 +102,7 @@ start_build_process() {
     . build/envsetup.sh
 
     # Lunch target selection
-    lunch inifinty_aurora-userdebug
+    lunch infinty_aurora-userdebug
     
     # Build ROM
     m bacon -j$(nproc --all)
