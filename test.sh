@@ -7,8 +7,8 @@
 TG_BOT_TOKEN="8153933976:AAFTett-M8ovbPzYfKeG0F2srZxfqCZmMfg"
 TG_BUILD_CHAT_ID="-1002476597056"
 DEVICE_CODE="aurora"
-BUILD_TARGET="Evolution-X"
-ANDROID_VERSION="15"
+BUILD_TARGET="InfinityX"
+ANDROID_VERSION="16"
 
 # SHELL CONFIGURATION
 export TZ="Asia/Jakarta"
@@ -83,16 +83,16 @@ start_build_process() {
     rm -rf vendor/lineage-priv
 
     # Init android manifest
-    repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
+    repo init --depth=1 --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 16 -g default,-mips,-darwin,-notdefault
 
     # Resync sources
     /opt/crave/resync.sh
-    repo sync -c --force-sync --no-clone-bundle --no-tags
+    repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync
 
     # Clone device tree
-    git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b main kernel/sony/sdm845
-    git clone https://github.com/Sorayukii/android_device_sony_aurora -b 15 device/sony/aurora
-    git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 15 device/sony/tama-common
+    git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 -b bpf kernel/sony/sdm845
+    git clone https://github.com/Sorayukii/android_device_sony_aurora -b 16-inx device/sony/aurora
+    git clone https://github.com/Sorayukii/android_device_sony_tama-common -b 16-aosp device/sony/tama-common
     git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony -b 15 hardware/sony/SonyOpenTelephony
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_aurora -b 15 vendor/sony/aurora
     git clone https://github.com/Sorayukii/proprietary_vendor_sony_tama-common -b 15 vendor/sony/tama-common
@@ -101,15 +101,11 @@ start_build_process() {
     # Setup the build environment
     . build/envsetup.sh
 
-    # Declare flags
-    export TARGET_INCLUDE_ACCORD=false
-    export WITH_GMS=false
-
     # Lunch target selection
-    lunch lineage_aurora-bp1a-userdebug
+    lunch inifinty_aurora-userdebug
     
     # Build ROM
-    m evolution
+    m bacon -j$(nproc --all)
 
     BUILD_STATUS=$? # Capture exit code immediately
 
