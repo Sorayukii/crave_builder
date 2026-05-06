@@ -76,6 +76,7 @@ start_build_process() {
     rm -rf .repo/local_manifests
     rm -rf kernel/configs
     rm -rf hardware/interfaces
+    rm -rf system/logging
     rm -rf kernel/sony/sdm845
     rm -rf device/sony/tama-common
     rm -rf device/sony/aurora
@@ -103,8 +104,10 @@ start_build_process() {
     # Replace repo
     rm -rf kernel/configs
     rm -rf hardware/interfaces
+    rm -rf system/logging
     git clone https://github.com/crdroidandroid/android_kernel_configs --depth=1 -b 16.0 kernel/configs
     git clone https://github.com/crdroidandroid/android_hardware_interfaces --depth=1 -b 16.0 hardware/interfaces
+    git clone https://github.com/ximi-daisy-test/android_system_logging --depth=1 -b lineage-23.3-tweaked system/logging
 
     # Setup the build environment
     . build/envsetup.sh
