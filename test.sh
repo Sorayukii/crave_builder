@@ -93,7 +93,7 @@ start_build_process() {
     repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync
 
     # Clone device tree
-    git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 --depth=1 -b bpf kernel/sony/sdm845
+    git clone https://github.com/Sorayukii/stardust_kernel_sony_sdm845 --depth=1 -b bpf-5.10 kernel/sony/sdm845
     git clone https://github.com/Sorayukii/android_device_sony_aurora --depth=1 -b 16-inx device/sony/aurora
     git clone https://github.com/Sorayukii/android_device_sony_tama-common --depth=1 -b 16-aosp device/sony/tama-common
     git clone https://github.com/Sorayukii/android_hardware_sony_SonyOpenTelephony --depth=1 -b 15 hardware/sony/SonyOpenTelephony
